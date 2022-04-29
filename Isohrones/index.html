@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Add a geocoder</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<!-- Load the `mapbox-gl-geocoder` plugin. -->
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+ 
+<div id="map"></div>
+ 
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1Ijoic3QwNjk0MTkiLCJhIjoiY2wwcDFuaDdsMG1jejNjbnRtZnBjc3NyMSJ9.J4bpyc2QxzlL33kjkuw0mg';
+const map = new mapboxgl.Map({
+container: 'map',
+style: 'mapbox://styles/mapbox/streets-v11',
+center: [30.24233912362549,59.942753228658354],
+zoom: 12
+});
+
+
+map.on('load', function () { 
+    
+map.addSource('isohrone_10', {
+    'type': 'vector',
+    "tiles": ["http://localhost:3000/public.isohrone_10/{z}/{x}/{y}.pbf"]
+});
+
+map.addLayer(
+    {
+        'id': 'isohrone_10-layer',
+        'type': 'fill',
+        'source': 'isohrone_10',
+        'source-layer': 'public.isohrone_10',
+        'layout': {},
+        'paint': {
+        'fill-color': '#d8daeb', 
+        'fill-opacity': 0.3
+        }
+    }    ,
+  
+)
+
+map.addSource('isohrone_5', {
+    'type': 'vector',
+    "tiles": ["http://localhost:3000/public.isohrone_5/{z}/{x}/{y}.pbf"]
+});
+
+map.addLayer(
+    {
+        'id': 'isohrone_5-layer',
+        'type': 'fill',
+        'source': 'isohrone_5',
+        'source-layer': 'public.isohrone_5',
+        'layout': {},
+        'paint': {
+        'fill-color': '#b2abd2', 
+        'fill-opacity': 0.3
+        }
+    }    ,
+  
+)
+
+map.addSource('house_10_new', {
+    'type': 'vector',
+    "tiles": ["http://localhost:3000/public.house_10_new/{z}/{x}/{y}.pbf"]
+});
+
+map.addLayer(
+    {
+        'id': 'house_10_new',
+        'type': 'fill',
+        'source': 'house_10_new',
+        'source-layer': 'public.house_10_new',
+        'layout': {},
+        'paint': {
+        'fill-color': '#2F2D32',
+        'fill-outline-color': '#4575b4'
+        }
+    }    
+ 
+)
+
+map.addSource('house_5', {
+    'type': 'vector',
+    "tiles": ["http://localhost:3000/public.house_5/{z}/{x}/{y}.pbf"]
+});
+
+map.addLayer(
+    {
+        'id': 'house_5',
+        'type': 'fill',
+        'source': 'house_5',
+        'source-layer': 'public.house_5',
+        'layout': {},
+        'paint': {
+        'fill-color': '#161C2C',
+        'fill-outline-color': '#4575b4'
+        }
+    }    
+ 
+)
+
+map.addSource('study_pologon_10', {
+    'type': 'vector',
+    "tiles": ["http://localhost:3000/public.study_pologon_10/{z}/{x}/{y}.pbf"]
+});
+
+map.addLayer(
+    {
+        'id': 'study_pologon_10-layer',
+        'type': 'fill',
+        'source': 'study_pologon_10',
+        'source-layer': 'public.study_pologon_10',
+        'layout': {},
+        'paint': {
+        'fill-color': '#fff111'
+        }
+    }    
+ 
+)
+
+map.addSource('study_poligon_5', {
+    'type': 'vector',
+    "tiles": ["http://localhost:3000/public.study_poligon_5/{z}/{x}/{y}.pbf"]
+});
+
+map.addLayer(
+    {
+        'id': 'study_poligon_5',
+        'type': 'fill',
+        'source': 'study_poligon_5',
+        'source-layer': 'public.study_poligon_5',
+        'layout': {},
+        'paint': {
+        'fill-color': '#fff111'
+        }
+    }    
+ 
+)
+
+map.addSource('study_point_10', {
+    'type': 'vector',
+    "tiles": ["http://localhost:3000/public.study_point_10/{z}/{x}/{y}.pbf"]
+});
+
+map.addLayer(
+    {
+        'id': 'study_point_10',
+        'type': 'circle',
+        'source': 'study_point_10',
+        'source-layer': 'public.study_point_10',
+        'layout': {},
+        paint: {
+        'circle-radius': 1,
+        'circle-color': '#223b53',
+        'circle-stroke-color': 'white',
+        'circle-stroke-width': 1,
+        'circle-opacity': 0.5
+                }
+    }    
+ 
+)
+
+map.addSource('study_point_5', {
+    'type': 'vector',
+    "tiles": ["http://localhost:3000/public.study_point_5/{z}/{x}/{y}.pbf"]
+});
+
+map.addLayer(
+    {
+        'id': 'study_point_5-layer',
+        'type': 'circle',
+        'source': 'study_point_5',
+        'source-layer': 'public.study_point_5',
+        'layout': {},
+        paint: {
+        'circle-radius': 1,
+        'circle-color': '#223b53',
+        'circle-stroke-color': 'white',
+        'circle-stroke-width': 1,
+        'circle-opacity': 0.5
+                }
+    }    
+ 
+)
+
+
+
+map.addSource('hospital_10', {
+    'type': 'vector',
+    "tiles": ["http://localhost:3000/public.hospital_10/{z}/{x}/{y}.pbf"]
+});
+
+map.addLayer(
+    {
+        'id': 'hospital_10',
+        'type': 'fill',
+        'source': 'hospital_10',
+        'source-layer': 'public.hospital_10',
+        'layout': {},
+        'paint': {
+        'fill-color': '#33hh33'
+        }
+    }    
+ 
+)
+
+
+map.addSource('hospital_5', {
+    'type': 'vector',
+    "tiles": ["http://localhost:3000/public.hospital_5/{z}/{x}/{y}.pbf"]
+});
+
+map.addLayer(
+    {
+        'id': 'hospital_5',
+        'type': 'fill',
+        'source': 'hospital_5',
+        'source-layer': 'public.hospital_5',
+        'layout': {},
+        'paint': {
+        'fill-color': '#33oo33'
+        }
+    }    
+ 
+)
+
+
+})
+
+</script>
+ 
+</body>
+</html>
